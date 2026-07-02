@@ -12,6 +12,105 @@
       "buttonTextColor": "#ffffff",
       "buttonStyle": "rounded",
       "links": []
+    },
+    {
+      "username": "solequeenfeet",
+      "name": "Sole Queen Feet",
+      "bio": "Welcome to my world. Find all my links below.",
+      "location": "Your dreams",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=SoleQueenFeet",
+      "backgroundType": "color",
+      "backgroundValue": "#ffffff",
+      "buttonColor": "#f4256f",
+      "buttonTextColor": "#ffffff",
+      "buttonStyle": "rounded",
+      "links": [
+        {
+          "title": "Throne | Sole Queen Feet | My Wishlist",
+          "url": "https://throne.com/solequeenfeet",
+          "icon": "Crown",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/s/N/C/NhBmslHfYKdtk8L4GY4_SuDhOUOwEdpZ.jpg"
+        },
+        {
+          "title": "Information for Film/Sessions ONLY",
+          "url": "https://t.me/+KWSfnLTPtTg1NWVh",
+          "icon": "Send",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/W/C/r/tIQENcDI0wTO2tTASCi4GNIH6ft2bX9z.png"
+        },
+        {
+          "title": "Make sure to put handle & platform in subject",
+          "url": "https://venmo.com/SoleQueenFeet",
+          "icon": "Wallet",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/8/f/z/PJVCP1w7aH4K9ZXlNzhKA4H1tPVtx8mL.png"
+        },
+        {
+          "title": "Make sure to put handle & platform in subject",
+          "url": "https://cash.app/solequeenfeet",
+          "icon": "Banknote",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/_/l/x/g6f0C3KVWnv2yfQGzPOKQBOqOs52yrPG.png"
+        },
+        {
+          "title": "Instagram",
+          "url": "https://instagram.com/solequeenfeet",
+          "icon": "Instagram",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/d/a/h/8zpFXbrlvkEUUsBQsfgjvXMl1ceLaS9q.png"
+        },
+        {
+          "title": "Fetlife",
+          "url": "https://fetlife.com/users/10377614",
+          "icon": "Heart",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/O/I/h/IG20KKUzjrYwUhQ-6Hi5QYThtSKxRb1l.png",
+          "nsfw": true
+        },
+        {
+          "title": "FANSLY My #1 Platform",
+          "url": "https://fansly.com/solequeenfeet",
+          "icon": "Star",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/O/7/1/KyD7bsW9ol8ze8FX9lZ6YZe_vCf9eYyQ.png",
+          "nsfw": true
+        },
+        {
+          "title": "LOYAL FANS: Clip Store",
+          "url": "https://www.loyalfans.com/solequeenfeet",
+          "icon": "Clapperboard",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/j/6/h/G4dMpHWvrYAPCiRp1sJP8B4tgVPK3dhJ.png",
+          "nsfw": true
+        },
+        {
+          "title": "ManyVids",
+          "url": "https://www.manyvids.com/Profile/1003997181/solequeenfeet/Store/Videos/Creator-View",
+          "icon": "Video",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/I/X/Y/Asln1Q0MBa-65bjM_RlbV2DriRBbss-f.png",
+          "nsfw": true
+        },
+        {
+          "title": "PornHub",
+          "url": "https://www.pornhub.com/model/thesolequeenfeet",
+          "icon": "Heart",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/9/w/U/M8j4oM9Q-djC6fhGcelUacED-OQ5Q8LmF.jpg",
+          "nsfw": true
+        },
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/thesolequeenfeet",
+          "icon": "Twitter",
+          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/s/c/R/F3udacICtsUlJhNzkRBQbLa-1lyqB0Z9.png",
+          "nsfw": true
+        }
+      ]
+    },
+    {
+      "username": "QueenMaya",
+      "name": "Queen Maya",
+      "bio": "",
+      "location": "",
+      "avatar": null,
+      "backgroundType": "color",
+      "backgroundValue": "#ffffff",
+      "buttonColor": "#f4256f",
+      "buttonTextColor": "#ffffff",
+      "buttonStyle": "rounded",
+      "links": []
     }
   ]
 }
