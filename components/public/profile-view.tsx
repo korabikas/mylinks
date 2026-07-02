@@ -3,26 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Link as LinkModel, User } from "@prisma/client";
 import * as LucideIcons from "lucide-react";
-import {
-  Home,
-  Bookmark,
-  Bell,
-  MessageSquare,
-  Heart,
-  QrCode,
-  MoreVertical,
-  ChevronUp,
-  ChevronDown,
-  Plus,
-  LogIn,
-} from "lucide-react";
+import { Home, Heart, QrCode, MoreVertical, ChevronUp, ChevronDown } from "lucide-react";
+import { User, Link as LinkData } from "@/lib/data";
 
 interface ProfileViewProps {
-  user: Omit<User, "password" | "fullName"> & { links: LinkModel[] };
-  isOwner?: boolean;
-  isAuthenticated?: boolean;
+  user: User;
 }
 
 function getIcon(name?: string | null) {
@@ -31,29 +17,21 @@ function getIcon(name?: string | null) {
   return icon || null;
 }
 
-export function ProfileView({ user, isOwner, isAuthenticated }: ProfileViewProps) {
+export function ProfileView({ user }: ProfileViewProps) {
   const [showAdult, setShowAdult] = useState(false);
-  const [clickedId, setClickedId] = useState<string | null>(null);
-  const accentColor = "#f4256f";
+  const accentColor = user.buttonColor || "#f4256f";
 
-  const allLinks = user.links.filter((l) => l.active).sort((a, b) => a.order - b.order);
+  const allLinks = (user.links || [])
+    .filter((l) => l.active !== false)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
   const safeLinks = allLinks.filter((l) => !l.nsfw);
   const adultLinks = allLinks.filter((l) => l.nsfw);
 
-  const handleClick = async (linkId: string, url: string) => {
-    setClickedId(linkId);
-    try {
-      await fetch(`/api/links/${linkId}/click`, { method: "POST" });
-    } catch {
-      // ignore
-    }
-    setTimeout(() => {
-      window.open(url, "_blank", "noopener,noreferrer");
-      setClickedId(null);
-    }, 120);
+  const handleClick = (url: string) => {
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  const renderLinkIcon = (link: LinkModel) => {
+  const renderLinkIcon = (link: LinkData) => {
     if (link.coverImage) {
       return (
         <Image
@@ -90,20 +68,19 @@ export function ProfileView({ user, isOwner, isAuthenticated }: ProfileViewProps
     }
   };
 
-  const renderLink = (link: LinkModel) => {
+  const renderLink = (link: LinkData) => {
     const shownUrl = link.displayUrl || formatUrl(link.url);
     return (
       <div
-        key={link.id}
+        key={link.id || link.url}
         className="group flex items-center gap-3 rounded-2xl border border-pink-200 bg-white px-4 py-3 shadow-sm transition-shadow hover:shadow-md"
       >
-        {/* Left indicator dot */}
         <div
           className="h-2 w-2 flex-shrink-0 rounded-full"
           style={{ backgroundColor: accentColor }}
         />
         <button
-          onClick={() => handleClick(link.id, link.url)}
+          onClick={() => handleClick(link.url)}
           className="flex flex-1 items-center gap-4 text-left"
         >
           {renderLinkIcon(link)}
@@ -122,9 +99,6 @@ export function ProfileView({ user, isOwner, isAuthenticated }: ProfileViewProps
         >
           <MoreVertical className="h-5 w-5" />
         </button>
-        {clickedId === link.id && (
-          <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-600" />
-        )}
       </div>
     );
   };
@@ -134,104 +108,37 @@ export function ProfileView({ user, isOwner, isAuthenticated }: ProfileViewProps
       {/* Top navigation */}
       <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#f4256f]">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
-          {/* Left nav */}
           <div className="flex items-center gap-6 text-sm font-medium text-white/90">
             <Link href="/" className="flex flex-col items-center gap-0.5 hover:text-white">
               <Home className="h-5 w-5" />
               <span className="text-[10px]">Home</span>
             </Link>
-            {isAuthenticated ? (
-              <button className="flex flex-col items-center gap-0.5 hover:text-white">
-                <Bookmark className="h-5 w-5" />
-                <span className="text-[10px]">Bookmarks</span>
-              </button>
-            ) : (
-              <Link
-                href="/signup"
-                className="flex flex-col items-center gap-0.5 hover:text-white"
-              >
-                <Bookmark className="h-5 w-5" />
-                <span className="text-[10px]">Bookmarks</span>
-              </Link>
-            )}
-            {isAuthenticated ? (
-              <button className="flex flex-col items-center gap-0.5 hover:text-white">
-                <Bell className="h-5 w-5" />
-                <span className="text-[10px]">Notifications</span>
-              </button>
-            ) : (
-              <Link
-                href="/signup"
-                className="flex flex-col items-center gap-0.5 hover:text-white"
-              >
-                <Bell className="h-5 w-5" />
-                <span className="text-[10px]">Notifications</span>
-              </Link>
-            )}
-            {isAuthenticated ? (
-              <button className="flex flex-col items-center gap-0.5 hover:text-white">
-                <MessageSquare className="h-5 w-5" />
-                <span className="text-[10px]">Messages</span>
-              </button>
-            ) : (
-              <Link
-                href="/signup"
-                className="flex flex-col items-center gap-0.5 hover:text-white"
-              >
-                <MessageSquare className="h-5 w-5" />
-                <span className="text-[10px]">Messages</span>
-              </Link>
-            )}
           </div>
-
-          {/* Center logo */}
           <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Heart className="h-8 w-8 fill-white text-white" />
           </Link>
-
-          {/* Right nav */}
           <div className="flex items-center gap-3">
-            {isOwner ? (
-              <>
-                <span className="hidden text-sm text-white sm:inline">{user.username}</span>
-                <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-white bg-white">
-                  {user.avatar ? (
-                    <Image
-                      src={user.avatar}
-                      alt={user.name}
-                      width={32}
-                      height={32}
-                      className="h-full w-full object-cover"
-                      unoptimized
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-zinc-200 text-xs font-bold text-zinc-500">
-                      {user.name.charAt(0).toUpperCase()}
-                    </div>
-                  )}
+            <div className="h-8 w-8 overflow-hidden rounded-full border-2 border-white bg-white">
+              {user.avatar ? (
+                <Image
+                  src={user.avatar}
+                  alt={user.name}
+                  width={32}
+                  height={32}
+                  className="h-full w-full object-cover"
+                  unoptimized
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-zinc-200 text-xs font-bold text-zinc-500">
+                  {user.name.charAt(0).toUpperCase()}
                 </div>
-                <Link
-                  href="/dashboard/profile"
-                  className="flex items-center gap-1 rounded-full border border-white/40 bg-white/10 px-3 py-1.5 text-sm font-medium text-white hover:bg-white/20"
-                >
-                  <Plus className="h-4 w-4" />
-                  Link
-                </Link>
-              </>
-            ) : (
-              <Link
-                href="/login"
-                className="flex items-center gap-1 rounded-full border border-white/40 bg-white/10 px-3 py-1.5 text-sm font-medium text-white hover:bg-white/20"
-              >
-                <LogIn className="h-4 w-4" />
-                Log in
-              </Link>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Pink header */}
+      {/* Header */}
       <div
         className="relative h-48 w-full"
         style={{
@@ -265,59 +172,6 @@ export function ProfileView({ user, isOwner, isAuthenticated }: ProfileViewProps
               </div>
             )}
           </div>
-        </div>
-
-        {/* Action buttons */}
-        <div className="mb-6 flex items-center justify-end gap-2">
-          {isOwner && (
-            <Link
-              href="/dashboard/profile"
-              className="rounded-full px-6 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
-              style={{ backgroundColor: accentColor }}
-            >
-              Manage profile
-            </Link>
-          )}
-          {isAuthenticated ? (
-            <button
-              className="rounded-full px-6 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
-              style={{ backgroundColor: accentColor }}
-            >
-              Follow
-            </button>
-          ) : (
-            <Link
-              href="/signup"
-              className="rounded-full px-6 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
-              style={{ backgroundColor: accentColor }}
-            >
-              Follow
-            </Link>
-          )}
-          {isAuthenticated ? (
-            <button className="rounded-full border border-zinc-200 bg-white p-2 text-zinc-500 hover:bg-zinc-50">
-              <Bell className="h-5 w-5" />
-            </button>
-          ) : (
-            <Link
-              href="/signup"
-              className="rounded-full border border-zinc-200 bg-white p-2 text-zinc-500 hover:bg-zinc-50"
-            >
-              <Bell className="h-5 w-5" />
-            </Link>
-          )}
-          {isAuthenticated ? (
-            <button className="rounded-full border border-zinc-200 bg-white p-2 text-zinc-500 hover:bg-zinc-50">
-              <MoreVertical className="h-5 w-5" />
-            </button>
-          ) : (
-            <Link
-              href="/signup"
-              className="rounded-full border border-zinc-200 bg-white p-2 text-zinc-500 hover:bg-zinc-50"
-            >
-              <MoreVertical className="h-5 w-5" />
-            </Link>
-          )}
         </div>
 
         <div className="grid gap-6 lg:grid-cols-5">
@@ -377,21 +231,7 @@ export function ProfileView({ user, isOwner, isAuthenticated }: ProfileViewProps
             {safeLinks.length === 0 && adultLinks.length === 0 && (
               <div className="rounded-2xl border border-pink-200 bg-white p-8 text-center shadow-sm">
                 <p className="mb-2 text-lg font-semibold text-zinc-900">No links yet</p>
-                <p className="mb-4 text-sm text-zinc-500">
-                  {isOwner
-                    ? "Start building your page by adding your first link."
-                    : "This user hasn't added any links yet."}
-                </p>
-                {isOwner && (
-                  <Link
-                    href="/dashboard/profile"
-                    className="inline-flex items-center gap-1 rounded-full px-5 py-2 text-sm font-semibold text-white"
-                    style={{ backgroundColor: accentColor }}
-                  >
-                    <Plus className="h-4 w-4" />
-                    Add your first link
-                  </Link>
-                )}
+                <p className="text-sm text-zinc-500">This user hasn&apos;t added any links yet.</p>
               </div>
             )}
           </div>
@@ -401,9 +241,6 @@ export function ProfileView({ user, isOwner, isAuthenticated }: ProfileViewProps
       {/* Footer */}
       <footer className="border-t border-zinc-200 bg-white py-6">
         <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-4 px-4 text-xs text-zinc-500">
-          <button className="hover:text-zinc-900">Terms</button>
-          <button className="hover:text-zinc-900">Privacy</button>
-          <button className="hover:text-zinc-900">Help & Contact</button>
           <Link href="/" className="font-semibold hover:text-zinc-900">
             MyLinks
           </Link>

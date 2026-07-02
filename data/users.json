@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "name": "Administrator",
+      "bio": "Site administrator",
+      "location": "",
+      "avatar": null,
+      "backgroundType": "color",
+      "backgroundValue": "#ffffff",
+      "buttonColor": "#f4256f",
+      "buttonTextColor": "#ffffff",
+      "buttonStyle": "rounded",
+      "links": []
+    }
+  ]
+}

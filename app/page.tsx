@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Heart, Link2, Lock, Shield, Users, Zap } from "lucide-react";
+import { Heart, Link2, Zap, Users, Shield, Globe } from "lucide-react";
+import { getUsers } from "@/lib/data";
 
 export default function HomePage() {
+  const users = getUsers();
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
@@ -13,19 +15,6 @@ export default function HomePage() {
             <Heart className="h-6 w-6 fill-current" />
             MyLinks
           </Link>
-          <nav className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="hidden text-sm font-medium text-zinc-600 hover:text-zinc-900 sm:inline"
-            >
-              Example
-            </Link>
-            <Link href="/login">
-              <Button variant="outline" size="sm" className="border-[#f4256f] text-[#f4256f] hover:bg-[#f4256f]/5">
-                Log in
-              </Button>
-            </Link>
-          </nav>
         </div>
       </header>
 
@@ -37,34 +26,19 @@ export default function HomePage() {
             All your links in one beautiful page
           </h1>
           <p className="mb-8 text-lg text-zinc-600 sm:text-xl">
-            Create your own link-in-bio page, manage unlimited links, customize your
-            style, and share everything with your audience.
+            A static link-in-bio page. Users and links are managed in{" "}
+            <code className="rounded bg-zinc-100 px-1 py-0.5 text-sm">data/users.json</code>.
           </p>
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/admin/dashboard/users/new">
-              <Button size="lg" className="bg-[#f4256f] px-8 hover:bg-[#d91d5c]">
-                Get started for free
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="px-8">
-                View example
-              </Button>
-            </Link>
-          </div>
 
-          <div className="mx-auto mt-12 max-w-md rounded-2xl border bg-white p-2 shadow-xl">
-            <div className="flex items-center gap-2 rounded-xl bg-zinc-50 p-2">
-              <span className="pl-3 text-zinc-400">mylinks.love/</span>
-              <Input
-                placeholder="yourname"
-                className="border-0 bg-transparent focus-visible:ring-0"
-              />
-              <Button size="sm" className="bg-[#f4256f] hover:bg-[#d91d5c]">
-                Claim
-              </Button>
+          {users.length > 0 && (
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href={`/${users[0].username}`}>
+                <Button size="lg" className="bg-[#f4256f] px-8 hover:bg-[#d91d5c]">
+                  View example profile
+                </Button>
+              </Link>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -78,51 +52,64 @@ export default function HomePage() {
             <FeatureCard
               icon={<Link2 className="h-6 w-6 text-[#f4256f]" />}
               title="Unlimited links"
-              description="Add as many links as you want and organize them with drag and drop."
+              description="Add as many links as you want in the JSON file."
             />
             <FeatureCard
               icon={<Zap className="h-6 w-6 text-[#f4256f]" />}
               title="Custom themes"
-              description="Choose your colors, background, avatar, and button style."
+              description="Choose colors, background, avatar, and button style per user."
             />
             <FeatureCard
               icon={<Users className="h-6 w-6 text-[#f4256f]" />}
-              title="Admin dashboard"
-              description="Manage all users and their links from one secure admin panel."
+              title="Multiple profiles"
+              description="Add as many users as you want to the users.json file."
             />
             <FeatureCard
               icon={<Shield className="h-6 w-6 text-[#f4256f]" />}
               title="Secure by default"
-              description="Role-based access, hashed passwords, and protected admin routes."
+              description="No database or auth to configure. Just static files."
             />
             <FeatureCard
-              icon={<Lock className="h-6 w-6 text-[#f4256f]" />}
-              title="18+ link controls"
-              description="Mark adult links and let visitors choose to reveal them."
+              icon={<Globe className="h-6 w-6 text-[#f4256f]" />}
+              title="Fast static pages"
+              description="Pre-rendered profiles load instantly on Vercel."
             />
             <FeatureCard
               icon={<Heart className="h-6 w-6 text-[#f4256f]" />}
               title="Built for creators"
-              description="Perfect for artists, influencers, and adult content creators."
+              description="Perfect for artists, influencers, and content creators."
             />
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-zinc-950 px-4 py-20 text-center text-white">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="mb-4 text-3xl font-bold">Ready to build your page?</h2>
-          <p className="mb-8 text-zinc-400">
-            Join MyLinks and share everything you create with the world.
-          </p>
-          <Link href="/admin">
-            <Button size="lg" className="bg-[#f4256f] px-8 hover:bg-[#d91d5c]">
-              Create your page
-            </Button>
-          </Link>
-        </div>
-      </section>
+      {/* Profiles */}
+      {users.length > 0 && (
+        <section className="bg-zinc-50 px-4 py-20">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-8 text-center text-3xl font-bold text-zinc-900">
+              Profiles
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {users.map((user) => (
+                <Link
+                  key={user.username}
+                  href={`/${user.username}`}
+                  className="flex items-center gap-4 rounded-xl border bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f4256f] text-lg font-bold text-white">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-zinc-900">{user.name}</p>
+                    <p className="text-sm text-zinc-500">@{user.username}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="border-t px-4 py-8">
@@ -130,14 +117,6 @@ export default function HomePage() {
           <p className="text-sm text-zinc-500">
             © {new Date().getFullYear()} MyLinks. Built for mylinks.love
           </p>
-          <div className="flex gap-4 text-sm text-zinc-500">
-            <Link href="/login" className="hover:text-zinc-900">
-              Log in
-            </Link>
-            <Link href="/login" className="hover:text-zinc-900">
-              Example
-            </Link>
-          </div>
         </div>
       </footer>
     </div>
