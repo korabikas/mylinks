@@ -1,11 +1,7 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Heart, Link2, Zap, Users, Shield, Globe } from "lucide-react";
-import { getUsers } from "@/lib/data";
 
 export default function HomePage() {
-  const users = getUsers();
-
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
@@ -29,16 +25,6 @@ export default function HomePage() {
             A static link-in-bio page. Users and links are managed in{" "}
             <code className="rounded bg-zinc-100 px-1 py-0.5 text-sm">data/users.json</code>.
           </p>
-
-          {users.length > 0 && (
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href={`/${users[0].username}`}>
-                <Button size="lg" className="bg-[#f4256f] px-8 hover:bg-[#d91d5c]">
-                  View example profile
-                </Button>
-              </Link>
-            </div>
-          )}
         </div>
       </section>
 
@@ -82,34 +68,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Profiles */}
-      {users.length > 0 && (
-        <section className="bg-zinc-50 px-4 py-20">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-8 text-center text-3xl font-bold text-zinc-900">
-              Profiles
-            </h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {users.map((user) => (
-                <Link
-                  key={user.username}
-                  href={`/${user.username}`}
-                  className="flex items-center gap-4 rounded-xl border bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f4256f] text-lg font-bold text-white">
-                    {user.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-zinc-900">{user.name}</p>
-                    <p className="text-sm text-zinc-500">@{user.username}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Footer */}
       <footer className="border-t px-4 py-8">
