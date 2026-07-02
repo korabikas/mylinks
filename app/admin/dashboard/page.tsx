@@ -58,9 +58,6 @@ export default async function AdminDashboardHomePage() {
           <Link href="/admin/dashboard/users">
             <Button variant="outline">Manage Users</Button>
           </Link>
-          <Link href="/exampleuser" target="_blank">
-            <Button variant="outline">View Example Profile</Button>
-          </Link>
         </div>
       </div>
     </div>

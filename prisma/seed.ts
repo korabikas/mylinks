@@ -45,70 +45,12 @@ async function main() {
 
   console.log(`Admin user ensured: ${admin.email}`);
 
-  // Remove old example users that may contain real personal information
+  // Remove old example/demo users so only the admin account remains
   await prisma.user.deleteMany({
     where: {
-      username: { in: ["solequeenfeet", "QueenMaya"] },
+      username: { in: ["solequeenfeet", "QueenMaya", "exampleuser"] },
     },
   });
-
-  // Create a generic demo account (clearly fake example data only)
-  const demoPassword = process.env.DEMO_PASSWORD || "demo123456";
-  const hashedDemoPassword = await bcrypt.hash(demoPassword, 12);
-
-  const demoLinks = [
-    {
-      title: "My Website",
-      url: "https://example.com",
-      icon: "Globe",
-    },
-    {
-      title: "Twitter / X",
-      url: "https://x.com/exampleuser",
-      icon: "Twitter",
-    },
-    {
-      title: "Instagram",
-      url: "https://instagram.com/exampleuser",
-      icon: "Instagram",
-    },
-    {
-      title: "YouTube Channel",
-      url: "https://youtube.com/@exampleuser",
-      icon: "Youtube",
-    },
-  ];
-
-  const demoUser = await prisma.user.upsert({
-    where: { email: "demo@example.com" },
-    update: {
-      username: "exampleuser",
-      name: "Example User",
-      fullName: "Example User",
-      password: hashedDemoPassword,
-    },
-    create: {
-      email: "demo@example.com",
-      username: "exampleuser",
-      name: "Example User",
-      fullName: "Example User",
-      bio: "This is a demo profile. Customize it from your dashboard.",
-      location: "The Internet",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=exampleuser",
-      backgroundType: "color",
-      backgroundValue: "#ffffff",
-      buttonColor: "#f4256f",
-      buttonTextColor: "#ffffff",
-      buttonStyle: "rounded",
-      role: Role.USER,
-      password: hashedDemoPassword,
-      links: {
-        create: demoLinks.map((link, index) => ({ ...link, order: index })),
-      },
-    },
-  });
-
-  console.log(`Demo user ensured: ${demoUser.username}`);
 }
 
 main()

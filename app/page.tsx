@@ -15,7 +15,7 @@ export default function HomePage() {
           </Link>
           <nav className="flex items-center gap-4">
             <Link
-              href="/exampleuser"
+              href="/login"
               className="hidden text-sm font-medium text-zinc-600 hover:text-zinc-900 sm:inline"
             >
               Example
@@ -46,7 +46,7 @@ export default function HomePage() {
                 Get started for free
               </Button>
             </Link>
-            <Link href="/exampleuser">
+            <Link href="/login">
               <Button size="lg" variant="outline" className="px-8">
                 View example
               </Button>
@@ -134,7 +134,7 @@ export default function HomePage() {
             <Link href="/login" className="hover:text-zinc-900">
               Log in
             </Link>
-            <Link href="/exampleuser" className="hover:text-zinc-900">
+            <Link href="/login" className="hover:text-zinc-900">
               Example
             </Link>
           </div>
