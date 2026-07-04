@@ -1,0 +1,86 @@
+[
+  {
+    "symbol": "BTC",
+    "name": "Bitcoin",
+    "network": "Bitcoin",
+    "address": "bc1qpsln8j4gl4fusmupq997vwrm2ljevy9rfuxray",
+    "image": "/crypto/BTC_bc1qpsln8j4gl4fusmupq997vwrm2ljevy9rfuxray.jpg"
+  },
+  {
+    "symbol": "ETH",
+    "name": "Ethereum",
+    "network": "ERC20",
+    "address": "0xaF05325acC809d4E7109229C7579720453F9a68F",
+    "image": "/crypto/ETH_0xaF05325acC809d4E7109229C7579720453F9a68F.jpg"
+  },
+  {
+    "symbol": "USDT",
+    "name": "Tether",
+    "network": "Ethereum",
+    "address": "0xaF05325acC809d4E7109229C7579720453F9a68F",
+    "image": "/crypto/Usdt_Ethereum_0xaF05325acC809d4E7109229C7579720453F9a68F.jpg"
+  },
+  {
+    "symbol": "USDT",
+    "name": "Tether",
+    "network": "Polygon",
+    "address": "0xaF05325acC809d4E7109229C7579720453F9a68F",
+    "image": "/crypto/Usdt_polygon_0xaF05325acC809d4E7109229C7579720453F9a68F.jpg"
+  },
+  {
+    "symbol": "USDT",
+    "name": "Tether",
+    "network": "TRC20",
+    "address": "TScqs3PLGtsRtaNazJt8JJLvDfmrg1AWRP",
+    "image": "/crypto/Usdt_trc20_TScqs3PLGtsRtaNazJt8JJLvDfmrg1AWRP.jpg"
+  },
+  {
+    "symbol": "USDC",
+    "name": "USD Coin",
+    "network": "Ethereum",
+    "address": "0xaF05325acC809d4E7109229C7579720453F9a68F",
+    "image": "/crypto/Usdc_ethereum_0xaF05325acC809d4E7109229C7579720453F9a68F.jpg"
+  },
+  {
+    "symbol": "USDC",
+    "name": "USD Coin",
+    "network": "Polygon",
+    "address": "0xaF05325acC809d4E7109229C7579720453F9a68F",
+    "image": "/crypto/USDC_Polygon_0xaF05325acC809d4E7109229C7579720453F9a68F.jpg"
+  },
+  {
+    "symbol": "USDC",
+    "name": "USD Coin",
+    "network": "Solana",
+    "address": "EURTTFd4UMQteuw8w5b2kYdYhUPtKPWeBohZzNkvy2XN",
+    "image": "/crypto/USDC_Solana_EURTTFd4UMQteuw8w5b2kYdYhUPtKPWeBohZzNkvy2XN.jpg"
+  },
+  {
+    "symbol": "USDC",
+    "name": "USD Coin",
+    "network": "Base",
+    "address": "0xaF05325acC809d4E7109229C7579720453F9a68F",
+    "image": "/crypto/USDC_base_0xaF05325acC809d4E7109229C7579720453F9a68F.jpg"
+  },
+  {
+    "symbol": "SOL",
+    "name": "Solana",
+    "network": "Solana",
+    "address": "EURTTFd4UMQteuw8w5b2kYdYhUPtKPWeBohZzNkvy2XN",
+    "image": "/crypto/Solana_EURTTFd4UMQteuw8w5b2kYdYhUPtKPWeBohZzNkvy2XN.jpg"
+  },
+  {
+    "symbol": "LTC",
+    "name": "Litecoin",
+    "network": "Litecoin",
+    "address": "ltc1qq3s6f8gxfq92r28l58sxf094fuzu6fhqwxrxmr",
+    "image": "/crypto/ltc1qq3s6f8gxfq92r28l58sxf094fuzu6fhqwxrxmr.jpg"
+  },
+  {
+    "symbol": "DOGE",
+    "name": "Dogecoin",
+    "network": "Dogecoin",
+    "address": "DSm5cGjkVFVYeehHMFHW3km9jUquhsvqLL",
+    "image": "/crypto/Doge_DSm5cGjkVFVYeehHMFHW3km9jUquhsvqLL.jpg"
+  }
+]

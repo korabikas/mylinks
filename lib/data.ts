@@ -10,6 +10,7 @@ export interface Link {
   order?: number;
   active?: boolean;
   nsfw?: boolean;
+  internal?: boolean;
 }
 
 export interface User {

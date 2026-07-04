@@ -32,26 +32,21 @@
           "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/s/N/C/NhBmslHfYKdtk8L4GY4_SuDhOUOwEdpZ.jpg"
         },
         {
-          "title": "Information for Film/Sessions ONLY",
-          "url": "https://t.me/+KWSfnLTPtTg1NWVh",
+          "title": "My Telegram: Free Group",
+          "url": "https://t.me/solequeen_free",
           "icon": "Send",
           "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/W/C/r/tIQENcDI0wTO2tTASCi4GNIH6ft2bX9z.png"
         },
         {
-          "title": "Make sure to put handle & platform in subject",
-          "url": "https://venmo.com/SoleQueenFeet",
-          "icon": "Wallet",
-          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/8/f/z/PJVCP1w7aH4K9ZXlNzhKA4H1tPVtx8mL.png"
-        },
-        {
-          "title": "Make sure to put handle & platform in subject",
-          "url": "https://cash.app/solequeenfeet",
-          "icon": "Banknote",
-          "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/_/l/x/g6f0C3KVWnv2yfQGzPOKQBOqOs52yrPG.png"
+          "title": "Crypto Pay",
+          "url": "/pay",
+          "icon": "Bitcoin",
+          "coverImage": null,
+          "internal": true
         },
         {
           "title": "Instagram",
-          "url": "https://instagram.com/solequeenfeet",
+          "url": "https://instagram.com/solequeenfeetusa",
           "icon": "Instagram",
           "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/d/a/h/8zpFXbrlvkEUUsBQsfgjvXMl1ceLaS9q.png"
         },
