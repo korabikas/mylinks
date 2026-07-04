@@ -23,10 +23,10 @@ export default function ThankYouPage() {
           Your payment has been submitted. We will verify it shortly.
         </p>
         <Link
-          href="/"
+          href="/solequeenfeet"
           className="mt-8 rounded-xl bg-[#f4256f] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#d91d5c] sm:text-base"
         >
-          Back to home
+          Back to profile
         </Link>
       </main>
     </div>
