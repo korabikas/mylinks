@@ -53,6 +53,7 @@ export default function CryptoPaymentPage() {
 
   const [copied, setCopied] = useState(false);
   const [confirming, setConfirming] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleCopy = async () => {
     try {
@@ -191,6 +192,20 @@ export default function CryptoPaymentPage() {
                 >
                   {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 </button>
+              </div>
+
+              {/* Message box */}
+              <div className="mb-6">
+                <label className="mb-2 block text-sm font-semibold text-white">
+                  Get My Full Attention 💬
+                </label>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Write your message here… I read every tribute."
+                  rows={4}
+                  className="w-full resize-none rounded-xl border border-white/10 bg-zinc-900 p-3 text-sm text-white placeholder-zinc-500 outline-none transition-colors focus:border-[#f4256f] focus:ring-1 focus:ring-[#f4256f]"
+                />
               </div>
 
               <button
