@@ -66,7 +66,7 @@ export function ProfileView({ user }: ProfileViewProps) {
   };
 
   const formatUrl = (url: string) => {
-    if (url.startsWith("/")) return url;
+    if (url.startsWith("/")) return `${user.username}${url}`;
     try {
       const u = new URL(url);
       return (u.hostname + u.pathname).replace(/\/$/, "");
