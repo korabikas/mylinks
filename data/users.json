@@ -38,10 +38,10 @@
           "coverImage": "https://cdn.allmylinks.com/prod/Site/favicon/W/C/r/tIQENcDI0wTO2tTASCi4GNIH6ft2bX9z.png"
         },
         {
-          "title": "Crypto Pay",
+          "title": "Pay with Crypto",
           "url": "/pay",
           "icon": "Bitcoin",
-          "coverImage": null,
+          "coverImage": "https://cdn-icons-png.flaticon.com/512/2272/2272825.png",
           "internal": true
         },
         {
