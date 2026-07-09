@@ -40,14 +40,16 @@ export function ProfileView({ user }: ProfileViewProps) {
   const renderLinkIcon = (link: LinkData) => {
     if (link.coverImage) {
       return (
-        <Image
-          src={link.coverImage}
-          alt={link.title}
-          width={48}
-          height={48}
-          className="h-10 w-10 rounded-full object-cover sm:h-12 sm:w-12"
-          unoptimized
-        />
+        <div className="flex h-10 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1 sm:h-12 sm:w-20">
+          <Image
+            src={link.coverImage}
+            alt={link.title}
+            width={80}
+            height={48}
+            className="h-full w-full object-contain"
+            unoptimized
+          />
+        </div>
       );
     }
     const Icon = getIcon(link.icon);
